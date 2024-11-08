@@ -34,7 +34,7 @@ program Lecture_02
                 Am(3,:) = [1.0d0, x(3), x(3)**2.0d0]
 
                 call Solver_LU(Am, y, x, 3)
-#ifdef win
+#ifdef _WIN32
                 print*,"windows"
 #endif
                 ! call dgetrf (3, 3,  Am, 3, ipiv, info)
@@ -85,17 +85,7 @@ program Lecture_02
             end block
         case (4)
             block
-                real(real64), allocatable :: x(:)
-                real(real64) :: y(5)
-                write(*,*) loc(x), loc(y)
-                allocate(x(5))
-                write(*,*) loc(x), loc(y)
-                deallocate(x)
-                write(*,*) loc(x), loc(y)
-                allocate(x(5))
-                write(*,*) loc(x), loc(y)
-
-
+                write(*,*) "to be written"
             end block
         case (5)
             block
