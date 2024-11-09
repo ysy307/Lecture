@@ -22,7 +22,10 @@ $x = 0.00002311$のとき$\displaystyle \frac{1}{\sqrt{1-x}}-\frac{1}{\sqrt{1+x}
 ### 問1.2
 $x=0.003$のとき，次式を単精度により数値計算し，その結果を比較検討せよ．
 ```math
+\begin{equation*}
+\displaystyle
   s_1=\frac{1}{\sqrt{1-\sin^2x}}-1,\quad s_2=\frac{\sin^2 x}{(1+\cos x)(\cos x)}
+\end{equation*} 
 ```
 
 実行結果
@@ -40,12 +43,13 @@ $x=0.003$のとき，次式を単精度により数値計算し，その結果�
 無限級数
 ```math
 \begin{equation*}
+\displaystyle
   \frac{\pi}{4}=1-\frac{1}{3}+\frac{1}{5}-\cdots=\sum_{k=0}^{\infty}\frac{(-1)^k}{2k+1}
 \end{equation*}
 ```
 をエイトケン加速のプログラムにより求めよ．ただし，講義で示した数列$S_n^{(k)}$の$n=9$まで求めよ．
 
-実行結果: $S_9^{(9)}$
+実行結果: $\displaystyle S_9^{(9)}$
 ```
 0.78539875048231589
 ```
@@ -93,6 +97,7 @@ ln(9.2) = 2.219203484055
 ### 問2.3
 ```math
 \begin{equation*}
+\displaystyle
   f(x)=\frac{1}{1+25x^2}
 \end{equation*}
 ```
@@ -115,6 +120,7 @@ normおよびMSEは左から1,2,3,4次ラグランジュ補間，3次スプラ�
 ### 問3.1
 ```math
 \begin{equation*}
+\displaystyle
 I=\int_{0}^{\frac{\pi}{2}}\sin x~\mathrm{d}x
 \end{equation*}
 ```
@@ -131,6 +137,7 @@ Error is  3.2148281E-03
 ### 問3.2
 ```math
 \begin{equation*}
+\displaystyle
 I=\int_{0}^{\frac{\pi}{2}}\sin x~\mathrm{d}x
 \end{equation*}
 ```
@@ -147,6 +154,7 @@ Error is -8.2955240E-06
 ### 問3.3
 ```math
 \begin{equation*}
+\displaystyle
 S=\int_{0}^{1}\frac{4}{1+x^2}~\mathrm{d}x
 \end{equation*}
 ```
@@ -182,13 +190,14 @@ Error is -2.4868996E-14
 
 ```math
 \begin{equation*}
+\displaystyle
 S=\int_{0}^{2}x^5~\mathrm{d}x
 \end{equation*}
 ```
 
 計算結果
 
-解析解：$\frac{32}{3}$
+解析解：$\displaystyle\frac{32}{3}$
 ```
 Number of Division: 8
 The integral is    10.6718750000000
@@ -209,7 +218,7 @@ Error is  1.2715658E-06
 
 計算結果
 
-解析解：$\frac{32}{3}$
+解析解：$\displaystyle\frac{32}{3}$
 ```
 Number of Division: 3
 The integral is    10.6666666666667
@@ -220,11 +229,13 @@ Error is  3.5527137E-15
 下記の式に台形公式，シンプソン公式，ガウス・ルジャンドル積分公式を適用し，数値計算したときの積分$I$に含まれる誤差$[I-\pi/2]$ の値を表形式で示せ．ただし，$N = 8 , 12 , 16 , 20$ とせよ．
 ```math
 \begin{equation*}
+\displaystyle
     f(x) =  \sqrt{1-x^2}
 \end{equation*}
 ```
 ```math
 \begin{equation*}
+\displaystyle
     I=\int_{-1}^{1} f(x) ~\mathrm{d}x = \int_{-1}^{1}\sqrt{1-x^2} ~\mathrm{d}x = \dfrac{\pi}{2}
 \end{equation*}
 ```
