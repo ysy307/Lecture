@@ -1,7 +1,7 @@
 # 生物生産工学Ⅰ
 
 ## コンパイル
-Intel oneAPIとGNU makeでコンパイルできます．
+[Intel oneAPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/toolkits.html#gs.hc0791)と[GNU make](https://gnuwin32.sourceforge.net/packages/make.htm)があればコンパイル・実行できます．
 ```
 make test01
 ```
