@@ -50,14 +50,14 @@ program Lecture_02
                 b = ((Am(3,1)*Am(2,3) - Am(2,1)*Am(3,3)) * y(1) + (Am(1,1)*Am(3,3) - Am(3,1)*Am(1,3)) * y(2) + (Am(2,1)*Am(1,3) - Am(1,1)*Am(2,3)) * y(3)) / det
                 c = ((Am(2,1)*Am(3,2) - Am(3,1)*Am(2,2)) * y(1) + (Am(3,1)*Am(1,2) - Am(1,1)*Am(3,2)) * y(2) + (Am(1,1)*Am(2,2) - Am(2,1)*Am(1,2)) * y(3)) / det
                 
-                write(*,'(a, f16.11)') "a       = ", a
-                write(*,'(a, f16.11)') "b       = ", b
-                write(*,'(a, f16.11)') "c       = ", c
+                write(*,'(a, f16.11)') "a      = ", a
+                write(*,'(a, f16.11)') "b      = ", b
+                write(*,'(a, f16.11)') "c      = ", c
 
                 x_obj = 1.16
                 y_obj = a + b*x_obj + c*x_obj**2.0d0
 
-                write(*,'(a, f16.11)') "y_obj   = ", y_obj
+                write(*,'(a, f16.11)') "y_obj  = ", y_obj
 
             end block
         case (3)
