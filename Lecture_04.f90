@@ -126,9 +126,37 @@ program Lecture_02
                     write(*,'(a)') "Warning: Convergence conditions not reached"
                 end if
             end block
+        case(7)
+            block
+                integer(int32), parameter :: maxIter = 100000
+                real(real64) :: a, b
+                real(real64) :: convergence
+                real(real64) :: result_NM_x, result_NM_y
+                integer(int32) :: status
+
+
+                convergence = 1.0d-10
+
+                a = -1.0d0
+                b = -3.0d0
+
+                call Newton_Method_2D(F, G, Fx, Fy, Gx, Gy, a, b, convergence, maxIter, result_NM_x, result_NM_y, status)
+
+                if (status == 0) then
+                    write(*,'(a,f13.10,x,f13.10)')   "Initial value     : ", a, b
+                    if (result_NM_y < 0.0d0) then
+                        write(*,'(a,2f13.10,a)') "Newton Method    z= ", result_NM_x, result_NM_y, "i"
+                    else
+                        write(*,'(a,f13.10,a,f13.10,a)') "Newton Method    z= ", result_NM_x, "+", result_NM_y, "i"
+                    end if
+                    write(*,'(a,es8.1)')  "Convergence delta : ",convergence 
+                else
+                    write(*,'(a)') "Warning: Convergence conditions not reached"
+                end if
+            end block
         case (:0)
             write(*,*) "Invalid problem number."
-        case (7:)
+        case (8:)
             write(*,*) "Invalid problem number."
     end select
 
