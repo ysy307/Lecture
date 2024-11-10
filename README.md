@@ -412,3 +412,152 @@ Initial value     : -1.0000000000 -3.0000000000
 Newton Method    z= -1.6810828736-3.0504301992i
 Convergence delta :  1.0E-10
 ```
+
+## Lecture_05.f90
+### 問5.1
+ガウスの消去法のプログラムを作れ．
+
+適当に実装する．問2.2でも実際に計算してみるとよい．
+
+### 問5.2
+ガウスの消去法を用いて，次の連立1次方程式を解け．
+```math
+\begin{equation}
+  \left\{ \,
+  \begin{aligned}
+      & x+2y+z=3\\
+      & 3x+8y+7z=5\\
+      & 2x+7y+4z=8
+    \end{aligned}
+  \right.
+\end{equation}
+```
+```math
+\begin{equation}
+  \left\{ \,
+  \begin{aligned}
+      & 2w-4x+3y-z=3\\
+      & w-2x+5y-3z=0\\
+      & 3w-6x-y-z=0
+    \end{aligned}
+  \right.
+\end{equation}
+```
+
+実行結果
+
+式(1)　厳密解： $` x=1, y=2, y=-2 `$
+```
+(x, y, z) = (  1.00000,  2.00000, -2.00000)
+```
+式(2)
+
+これは未知数4に対して式の本数が3なので数値計算ができない．気合の手計算により求める．
+```math
+\begin{equation*}
+  \left\{ \,
+  \begin{aligned}
+      w &= 2x + 1\\
+      y &= 1     \\
+      z &= 2
+    \end{aligned}
+  \right.
+\end{equation*}
+```
+
+### 問5.3
+ヤコビ法を用いて，次の連立方程式を解け．ただし初期近似解を $` x_1=x_2=x_3=x_4=x_5=0 `$ とし，収束判定には $` \delta=10^{-8} `$ を用いよ． 
+```math
+\begin{equation}
+  \left\{ \,
+  \begin{aligned}
+      & 10x_1+3x_2+x_3+2x_4+x_5=-22\\
+      & x_1+19x_2+2x_3-x_4+5x_5=27\\
+      & -x_1+x_2+30x_3+x_4+10x_5=89\\
+      & -2x_1+x_3+20x_4+5x_5=-73\\
+      & -3x_1+5x_2+x_3-2x_4+25x_5=22
+    \end{aligned}
+  \right.
+\end{equation}
+```
+
+実行結果
+
+厳密解： $` x_1 = -2, x_2 = 1, x_3 = 3, x_4 = -4, x_5 = 0 `$
+```
+Jacobi method converged after 16 iterations.
+Jacobi Method:
+(x1, x2, x3, x4, x5) = (-1.9999999990, 0.9999999996, 2.9999999998,-3.9999999999, 0.0000000006)        
+convergence delta :  1.0E-08
+LU Decomposition:
+(x1, x2, x3, x4, x5) = (-2.0000000000, 1.0000000000, 3.0000000000,-4.0000000000,-0.0000000000)   
+```
+
+### 問5.4
+ガウス・ザイデル法を用いて，問5.2と同じ連立方程式を解け．ただし初期近似解を $` x_1=x_2=x_3=x_4=x_5=0 `$ とし，収束判定には $` \delta=10^{-8} `$ を用いよ． 
+
+実行結果
+
+厳密解： $` x_1 = -2, x_2 = 1, x_3 = 3, x_4 = -4, x_5 = 0 `$
+```
+Gauss-Seidel method converged after 11 iterations.
+Gauss Seidel Method:
+(x1, x2, x3, x4, x5) = (-2.0000000007, 1.0000000002, 3.0000000003,-3.9999999998,-0.0000000001)        
+convergence delta :  1.0E-08
+LU Decomposition:
+(x1, x2, x3, x4, x5) = (-2.0000000000, 1.0000000000, 3.0000000000,-4.0000000000,-0.0000000000)  
+```
+
+### 問5.5
+次の連立方程式をSORをもちいて数値的に解け．ただし，ただし収束判定には $` \delta=10^{-18} `$ を用いよ． 
+```math
+\begin{equation}
+  \left\{ \,
+  \begin{aligned}
+      & 5x_1+4x_2=13\\
+      & 2x_1+3x_2=8
+    \end{aligned}
+  \right.
+\end{equation}
+```
+
+実行結果
+
+厳密解： $` x=1, y=2 `$
+```
+Enter the relaxation parameter omega:
+1.2
+SOR method converged after 26 iterations.
+SOR Method:
+(x1, x2) = ( 1.0000000000, 2.0000000000)
+convergence delta :  1.0E-18
+LU Decomposition:
+(x1, x2) = ( 1.0000000000, 2.0000000000)
+```
+
+### 問5.6
+問5.5の連立方程式を $` \omega = 1.5 `$ として解き， $` \omega = 1.2 `$ を用いたときの計算と解の収束の速さを比較せよ．
+
+実行結果
+
+厳密解： $` x=1, y=2 `$
+
+```
+Enter the relaxation parameter omega:
+1.2
+SOR method converged after 26 iterations.
+SOR Method:
+(x1, x2) = ( 1.0000000000, 2.0000000000)
+convergence delta :  1.0E-18
+LU Decomposition:
+(x1, x2) = ( 1.0000000000, 2.0000000000)
+
+Enter the relaxation parameter omega:
+1.5
+SOR method converged after 55 iterations.
+SOR Method:
+(x1, x2) = ( 1.0000000000, 2.0000000000)
+convergence delta :  1.0E-18
+LU Decomposition:
+(x1, x2) = ( 1.0000000000, 2.0000000000)
+```

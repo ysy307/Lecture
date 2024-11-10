@@ -1,4 +1,4 @@
-program Lecture_02
+program Lecture_03
     use, intrinsic :: iso_fortran_env
     implicit none
     integer(int32) :: num_cases
@@ -272,4 +272,4 @@ contains
 
 
 
-end program Lecture_02
+end program Lecture_03

@@ -1,4 +1,4 @@
-program Lecture_02
+program Lecture_04
     use, intrinsic :: iso_fortran_env
     implicit none
     integer(int32) :: num_cases
@@ -387,8 +387,4 @@ subroutine Newton_Method_2D(f, g, fx, fy, gx, gy, a, b, convergence, maxIter, x_
         status = 1
     end subroutine Newton_Method_2D
 
-
-
-
-
-end program Lecture_02
+end program Lecture_04
