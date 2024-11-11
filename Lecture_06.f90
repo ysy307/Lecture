@@ -2,9 +2,30 @@ program Lecture_06
     use, intrinsic :: iso_fortran_env
     implicit none
     integer(int32) :: num_cases
-    real(real64)   :: pi
+    real(real64)   :: pi, e
 
     pi = 4.0d0 * atan(1.0d0)
+    block
+        integer(int32) :: i, j 
+        real(real64)   :: factor, e_old
+
+        i = 1
+        e = 1.0d0
+        do while(.true.)
+            e_old = e
+            factor = 1.0d0
+            do j = 1, i
+                factor = factor * dble(j)
+            end do
+
+            e = e + 1.0d0 / factor
+            if (abs(e - e_old) < 1.0d-20) then
+                exit
+            end if
+            i = i +1
+        end do
+    end block
+
 
     write(*,*) "Enter the problem number:"
     read(*,*) num_cases
@@ -134,7 +155,7 @@ program Lecture_06
             end block
         case (5)
             block
-
+                write(*,'(a)') "Solve with your hands"
             end block
         case(6)
             block
@@ -167,10 +188,32 @@ program Lecture_06
             end block
         case(7)
             block
-
+                write(*,'(a)') "Solve with your hands"
             end block
         case(8)
             block
+                real(real64), allocatable :: xe(:), ye(:)
+                real(real64), allocatable :: xr(:), yr(:)
+                real(real64)   :: h
+                integer(int32) :: i
+                integer(int32) :: n, nunit
+                character(100) :: filename
+
+                h = 0.05d0
+                n = int(1.0d0 / h)
+
+                call Fix_InitialCondition(xe, ye, h, n, 1.0d0, 5.0d0)
+                call Euler_Modify(f68, xe, ye, h)
+                call Fix_InitialCondition(xr, yr, h, n, 1.0d0, 5.0d0)
+                call Euler_Modify(f68, xr, yr, h)
+                
+                write(filename, '(a,i0,a)') 'result/L6/68_Euler_RK.dat'
+                open(newunit=nunit, file=filename, status='replace')
+                write(nunit,'(a)') "x   y_EM   y_RK4   Exact"
+                do i = 1, n + 1
+                    write(nunit,'(4es20.12)') xe(i), ye(i), yr(i), f68_Exact(xe(i))
+                end do
+                close(nunit)
 
             end block
         case (:0)
@@ -239,6 +282,18 @@ contains
         double precision, intent(in) :: x
         f66_Exact = exp(x)
     end function f66_Exact
+
+    double precision function f68(x, y)
+        implicit none
+        double precision, intent(in) :: x, y
+        f68 = 2.0d0 * x + 3.0d0 * y
+    end function f68
+
+    double precision function f68_Exact(x)
+        implicit none
+        double precision, intent(in) :: x
+        f68_Exact = 7.25d0 * exp(2.0d0 * x - 2.0d0) - 1.5d0 * x - 0.75
+    end function f68_Exact
 
 
     subroutine Fix_InitialCondition(x, y, h, n, x0, y0)
@@ -324,6 +379,30 @@ contains
             y(i + 1) = y(i - 1) + 2.0d0 * h * f(x(i), y(i))
         end do
     end subroutine Leapfrog
+
+    subroutine Runge_Kutta(f, x, y, h)
+        implicit none
+        interface
+            double precision function f(x, y)
+                double precision, intent(in) :: x, y
+            end function f
+        end interface
+        real(real64), intent(inout) :: x(:)
+        real(real64), intent(inout) :: y(:)
+        real(real64), intent(in)    :: h
+
+        integer(int32) :: i
+        real(real64)   :: k1, k2, k3, k4
+
+        do i = 1, size(x) - 1
+            k1 = h * f(x(i), y(i))
+            k2 = h * f(x(i) + 0.5d0 * h, y(i) + 0.5d0 * k1)
+            k3 = h * f(x(i) + 0.5d0 * h, y(i) + 0.5d0 * k2)
+            k4 = h * f(x(i) + h, y(i) + k3)
+            y(i + 1) = y(i) + (k1 + 2.0d0 * k2 + 2.0d0 * k3 + k4) / 6.0d0
+        end do
+    
+    end subroutine Runge_Kutta
 
 
 
