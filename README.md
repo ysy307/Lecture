@@ -835,4 +835,4 @@ x   y   Exact
   E_{\mathrm{RK4}} = \left|\left(1 + ah + \dfrac{1}{2}a^2h^2 + \dfrac{1}{6}a^3h^3 + \dfrac{1}{24} a^4h^4 \right)^{1/h-1} - \exp(a)\right|
 \end{equation*}
 ```
-![ホイン法とRunge-Kutta法での誤差のグラフ](http://i.imgur.com/img/error.png)
+![ホイン法とRunge-Kutta法での誤差のグラフ](https://github.com/ysy307/Lecture/blob/9d8324a322f5651d7aea271c7e53a167f2b35ffc/img/error.png)
