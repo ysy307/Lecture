@@ -5,11 +5,16 @@ program Lecture_05
     real(real64)   :: A2(2,2), x2(2), b2(2)
     real(real64)   :: A3(3,3), x3(3), b3(3)
     real(real64)   :: A5(5,5), x5(5), b5(5)
+    real(real128)  :: A2q(2,2), x2q(2), b2q(2)
     integer(int32),parameter :: maxIter = 10000
+
 
     A2 = transpose(reshape([5.0d0, 4.0d0, 2.0d0, 3.0d0], [2,2]))
     x2 = [0.0d0, 0.0d0]
     b2 = [13.0d0, 8.0d0]
+    A2q = transpose(reshape([5.0q0, 4.0q0, 2.0q0, 3.0q0], [2,2]))
+    x2q = [0.0q0, 0.0q0]
+    b2q = [13.0q0, 8.0q0]
     
     A3 = transpose(reshape([1.0d0, 2.0d0, 1.0d0, 3.0d0, 8.0d0, 7.0d0, 2.0d0, 7.0d0, 4.0d0], [3,3]))
     x3 = [0.0d0, 0.0d0, 0.0d0]
@@ -103,7 +108,7 @@ program Lecture_05
                     stop
                 end if
 
-                call SOR_Method(A2, b2, x2, 2, convergence, maxIter, omega)
+                call SOR_Method_D(A2, b2, x2, 2, convergence, maxIter, omega)
                 write(*,'(a)') "SOR Method:"
                 write(*,'(a,f13.10,a,f13.10,a)'), '(x1, x2) = (', x2(1), ',', x2(2),')'
                 write(*,'(a, es8.1)') "convergence delta : ", convergence
@@ -118,27 +123,20 @@ program Lecture_05
             end block
         case(6)
             block
-                real(real64), parameter :: convergence = 1.0d-18
-                real(real64)            :: omega
+                real(real128), parameter :: convergence = 1.0q-18
+                real(real128)            :: omega
 
                 write(*,'(a)') "Enter the relaxation parameter omega:"
                 read(*,*) omega
-                if (omega < 1.0d0 .or. omega > 2.0d0) then
+                if (omega < 1.0q0 .or. omega > 2.0q0) then
                     write(*,'(a)') "Error: omega must be between 1 and 2."
                     stop
                 end if
 
-                call SOR_Method(A2, b2, x2, 2, convergence, maxIter, omega)
+                call SOR_Method_Q(A2q, b2q, x2q, 2, convergence, maxIter, omega)
                 write(*,'(a)') "SOR Method:"
-                write(*,'(a,f13.10,a,f13.10,a)'), '(x1, x2) = (', x2(1), ',', x2(2),')'
+                write(*,'(a,f13.10,a,f13.10,a)'), '(x1, x2) = (', x2q(1), ',', x2q(2),')'
                 write(*,'(a, es8.1)') "convergence delta : ", convergence
-
-                x2(:) = [ 0.0d0, 0.0d0]
-                b2(:) = [13.0d0, 8.0d0]
-
-                call LU(A2, b2, x2, 2)
-                write(*,'(a)') "LU Decomposition:"
-                write(*,'(a,f13.10,a,f13.10,a)'), '(x1, x2) = (', x2(1), ',', x2(2),')'
 
             end block
         case (:0)
@@ -337,7 +335,7 @@ contains
 
     end subroutine Gauss_Seidel_Method
 
-    subroutine SOR_Method(A, b, x, n, tol, max_iter, omega)
+    subroutine SOR_Method_D(A, b, x, n, tol, max_iter, omega)
         implicit none
         real(real64), intent(in)    :: A(:,:)
         real(real64), intent(in)    :: b(:)
@@ -384,6 +382,55 @@ contains
         end if
         close(nunit)
 
-    end subroutine SOR_Method
+    end subroutine SOR_Method_D
+    
+    subroutine SOR_Method_Q(A, b, x, n, tol, max_iter, omega)
+        implicit none
+        real(real128), intent(in)    :: A(:,:)
+        real(real128), intent(in)    :: b(:)
+        real(real128), intent(inout) :: x(:)
+        integer(int32), intent(in)   :: n
+        real(real128), intent(in)    :: tol
+        integer(int32), intent(in)   :: max_iter
+        real(real128), intent(in)    :: omega
+
+        real(real128)                :: error, old_xi
+        integer(int32)               :: i, j, k
+        integer(int32)               :: nunit
+
+        if (omega < 1.0q0 .or. omega > 2.0q0) then
+            write(*,'(a, f15.8)') "Error: omega must be between 1 and 2. Given omega = ", omega
+            stop
+        end if
+
+        open(newunit=nunit, file="result/SOR_Error.dat", status="replace")
+        write(nunit,'(2a)') "iterations", "error"
+
+        do k = 1, max_iter
+            error = 0.0q0
+
+            do i = 1, n
+                old_xi = x(i)
+                x(i) = (1.0q0 - omega) * x(i) + omega * (b(i) - sum(A(i,1:i-1) * x(1:i-1)) - sum(A(i,i+1:n) * x(i+1:n))) / A(i, i)
+                
+                error = error + (x(i) - old_xi)**2.0q0
+            end do
+
+            error = error ** 0.5q0
+
+            write(nunit,'(i0, es15.8)') k, error
+
+            if (error < tol) then
+                write(*,'(a,i0,a)') "SOR method converged after ", k, " iterations."
+                exit
+            end if
+        end do
+
+        if (error >= tol .and. k >= max_iter) then
+            write(*,'(a,i0, a, es13.6)') "SOR method did not converge within the maximum number of iterations. Iteration = ", k - 1, ", Error = ", error
+        end if
+        close(nunit)
+
+    end subroutine SOR_Method_Q
 
 end program Lecture_05

@@ -542,22 +542,20 @@ LU Decomposition:
 
 厳密解： $` x=1, y=2 `$
 
+これよくよく考えると，倍精度でできる最小幅は2.220446049250313E-016なので $` \delta=10^{-18} `$ を厳密には満たせない．最低でも4倍精度でやらないとまずそうかも．
+
 ```
 Enter the relaxation parameter omega:
 1.2
-SOR method converged after 26 iterations.
+SOR method converged after 29 iterations.
 SOR Method:
 (x1, x2) = ( 1.0000000000, 2.0000000000)
 convergence delta :  1.0E-18
-LU Decomposition:
-(x1, x2) = ( 1.0000000000, 2.0000000000)
 
 Enter the relaxation parameter omega:
 1.5
-SOR method converged after 55 iterations.
+SOR method converged after 63 iterations.
 SOR Method:
 (x1, x2) = ( 1.0000000000, 2.0000000000)
 convergence delta :  1.0E-18
-LU Decomposition:
-(x1, x2) = ( 1.0000000000, 2.0000000000)
 ```
