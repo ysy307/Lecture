@@ -242,7 +242,7 @@ contains
         integer(int32)              :: i, j, k
         integer(int32)              :: nunit
 
-        open(newunit=nunit, file="result/Jacobi_Error.dat", status="replace")
+        open(newunit=nunit, file="result/L5/Jacobi_Error.dat", status="replace")
         write(nunit,'(2a)') "iterations", "error"
 
         allocate(x_new(n))
@@ -300,7 +300,7 @@ contains
 
         if (all(abs(x) < epsilon(0.0d0))) x = 0.0d0
 
-        open(newunit=nunit, file="result/GS_Error.dat", status="replace")
+        open(newunit=nunit, file="result/L5/GS_Error.dat", status="replace")
         write(nunit,'(2a)') "iterations", "error"
 
         do k = 1, max_iter
@@ -354,8 +354,8 @@ contains
             stop
         end if
 
-        open(newunit=nunit, file="result/SOR_Error.dat", status="replace")
-        write(nunit,'(2a)') "iterations", "error"
+        open(newunit=nunit, file="result/L5/SOR_Error.dat", status="replace")
+        write(nunit,'(a)') "iterations    error"
 
         do k = 1, max_iter
             error = 0.0d0
@@ -403,8 +403,8 @@ contains
             stop
         end if
 
-        open(newunit=nunit, file="result/SOR_Error.dat", status="replace")
-        write(nunit,'(2a)') "iterations", "error"
+        open(newunit=nunit, file="result/L5/SOR_Error.dat", status="replace")
+        write(nunit,'(a)') "iterations    error"
 
         do k = 1, max_iter
             error = 0.0q0

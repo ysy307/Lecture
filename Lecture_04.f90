@@ -163,71 +163,85 @@ program Lecture_04
 contains
 
     double precision function F_xcos(x)
+        implicit none
         double precision, intent(in) :: x
         F_xcos = x - cos(x)
     end function F_xcos
 
     double precision function DF_xcos(x)
+        implicit none
         double precision, intent(in) :: x
         DF_xcos = 1 + sin(x)
     end function DF_xcos
 
     double precision function F_Poly_Third(x)
+        implicit none
         double precision, intent(in) :: x
         F_Poly_Third = x**3.0d0 + x - 1.0d0
     end function F_Poly_Third
 
     double precision function DF_Poly_Third(x)
+        implicit none
         double precision, intent(in) :: x
         DF_Poly_Third = 3.0d0 * x**2.0d0 + 1.0d0
     end function DF_Poly_Third
 
     double precision function F_Poly_Third_F(x)
+        implicit none
         double precision, intent(in) :: x
         F_Poly_Third_F = x**3.0d0 + 6.0d0 * x**2.0d0 + 21.0d0 * x + 32.0d0
     end function F_Poly_Third_F
 
     double precision function DF_Poly_Third_F(x)
+        implicit none
         double precision, intent(in) :: x
         DF_Poly_Third_F = 3.0d0 * x**2.0d0 + 12.0d0 * x + 21.0d0
     end function DF_Poly_Third_F
     
     double precision function F_xsin(x)
+        implicit none
         double precision, intent(in) :: x
         F_xsin = sin(x) - 0.5d0 * x
     end function F_xsin
 
     double precision function DF_xsin(x)
+        implicit none
         double precision, intent(in) :: x
         DF_xsin = cos(x) - 0.5d0
     end function DF_xsin
 
     double precision function F(x, y)
+        implicit none
         double precision, intent(in) :: x, y
         F = x**3.0d0 - 3.0d0 * x * y**2.0d0 + 6.0d0 * x**2.0d0 - 6.0d0 * y**2.0d0 + 21.0d0 * x +32.0d0
     end function F
     
     double precision function Fx(x, y)
+        implicit none
         double precision, intent(in) :: x, y
         Fx = 3.0d0 * x**2.0d0 - 3.0d0 * y**2.0d0 + 12.0d0 * x + 21.0d0
     end function Fx
 
     double precision function Fy(x, y)
+        implicit none
         double precision, intent(in) :: x, y
         Fy = - 6.0d0 * x * y - 12.0d0 * y
     end function Fy
 
     double precision function G(x, y)
+        implicit none
         double precision, intent(in) :: x, y
         G = 3.0d0 * x**2.0d0 * y - y**3.0d0 + 12.0d0 * x * y + 21.0d0 * y
     end function G
 
     double precision function Gx(x, y)
+        implicit none
         double precision, intent(in) :: x, y
         Gx = 6.0d0 * x * y + 12.0d0 * y
     end function Gx
 
     double precision function Gy(x, y)
+        implicit none
         double precision, intent(in) :: x, y
         Gy = 3.0d0 * x**2.0d0 - 3.0d0 * y**2.0d0 + 12.0d0 * x + 21.0d0
     end function Gy
@@ -317,7 +331,7 @@ contains
         Newton_Method_First = c
     end function Newton_Method_First
 
-subroutine Newton_Method_2D(f, g, fx, fy, gx, gy, a, b, convergence, maxIter, x_star, y_star, status)
+    subroutine Newton_Method_2D(f, g, fx, fy, gx, gy, a, b, convergence, maxIter, x_star, y_star, status)
         implicit none
         interface
             double precision function f(x, y)

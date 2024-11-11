@@ -149,7 +149,7 @@ program Lecture_02
                     Spline(i) = cubic_spline_interpolate(N+1, x, a, b, c, d, analytic(1,i))
                 end do
 
-                write(filename, '(a,i0,a)') "result/f_res_", N,".dat"
+                write(filename, '(a,i0,a)') "result/L2/f_res_", N,".dat"
                 open(unit=10, file=filename, status='replace')
                     write(10,"(a,2x,a,2x,a,2x,a,2x,a,2x,a,2x,a)") "x", "f", "L1", "L2", "L3", "L4", "S1"
                     do i = 0, vsize

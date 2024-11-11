@@ -106,7 +106,7 @@ program Lecture_03
                 Is = -1.0d0
                 Ie = 1.0d0
 
-                open(unit=newnuit, file="result/Quadrature.dat", status='replace')
+                open(unit=newnuit, file="result/L3/Quadrature.dat", status='replace')
                 do iN = 1, size(N)
                     Int = Integrate_trapezoidal(F_Root, Is, Ie, N(iN))
                     write(newnuit,'(a,i0)') "Trapezoidal| Number of Division: ", N(iN)
