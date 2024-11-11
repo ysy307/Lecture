@@ -555,6 +555,7 @@ SOR Method:
 convergence delta :  1.0E-18
 ```
 ![error_iteration](img/56_Error_Iterations.png)
+![error_omega](img/56_Error_Omega.png)
 
 ## Lecture_06.f90
 ### 問6.1
