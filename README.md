@@ -737,10 +737,9 @@ N=1000
 ```
 ここで $` f(x,y)=ay `$ とすれば，$` y_{i+1} `$ は次のようにあらわされる．
 ```math
-\begin{equation}
-\tag{6.5.1}
+\begin{equation*}
   y_{i+1} = \left(1 + ah + \dfrac{1}{2}a^2h^2 \right)y_i
-\end{equation}
+\end{equation*}
 ```
 つまり，誤差は $`\mathcal{O}(\Delta h^3)`$ であり，2次精度である．ここで， $` x=[0, 1] `$ の領域を $` N `$ 分割すれば，
 ```math
@@ -748,7 +747,7 @@ N=1000
   h = \dfrac{1}{N},\quad N = \dfrac{1}{h}
 \end{equation*}
 ```
-式(6.5.1)は初期値 $` y(0)=y_0 `$ を用い，$` h = \dfrac{1}{N} `$ とすれば次のようにあらわせる．
+漸化式は初期値 $` y(0)=y_0 `$ を用い，$` h = \dfrac{1}{N} `$ とすれば次のようにあらわせる．
 ```math
 \begin{equation*}
   y(1) = y_0\left(1 + \dfrac{a}{N} + \dfrac{1}{2}\dfrac{a^2}{N^2} \right)^{N-1}
@@ -844,7 +843,6 @@ x   y   Exact
 整理すれば，
 ```math
 \begin{equation}
-\tag{6.7.1}
   y_{i+1} = \left(1 + ah + \dfrac{1}{2}a^2h^2 + \dfrac{1}{6}a^3h^3 + \dfrac{1}{24} a^4h^4 \right)y_i
 \end{equation}
 ```
