@@ -2,14 +2,14 @@
 
 ## コンパイル
 [Intel oneAPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/toolkits.html#gs.hc0791)と[GNU make](https://gnuwin32.sourceforge.net/packages/make.htm)があればコンパイル・実行できます．
-```
+<!-- ```
 make test01
-```
+``` -->
 
-適当なところでクローンして使ってください．
+<!-- 適当なところでクローンして使ってください．
 ```
 git clone https://github.com/ysy307/Lecture.git
-```
+``` -->
 
 
 ## Lecture_01.f90
@@ -750,13 +750,13 @@ N=1000
 漸化式は初期値 $` y(0)=y_0 `$ を用い，$` h = \dfrac{1}{N} `$ とすれば次のようにあらわせる．
 ```math
 \begin{equation*}
-  y(1) = y_0\left(1 + \dfrac{a}{N} + \dfrac{1}{2}\dfrac{a^2}{N^2} \right)^{N-1}
+  y_{i} = y_0\left(1 + \dfrac{a}{N} + \dfrac{1}{2}\dfrac{a^2}{N^2} \right)^{N-1}
 \end{equation*}
 ```
 $` N\rightarrow h `$ とすれば
 ```math
 \begin{equation*}
-  y(1) = y_0\left(1 + ah + \dfrac{1}{2}a^2h^2 \right)^{1/h-1}
+  y_{i} = y_0\left(1 + ah + \dfrac{1}{2}a^2h^2 \right)^{1/h-1}
 \end{equation*}
 ```
 解析解と係数比較すれば
@@ -873,7 +873,7 @@ x   y   Exact
 一般解
 ```math
 \begin{equation*}
-  u(t) = C \exp(2t) - \dfrac{3}{2}t - \dfrac{3}{4}
+  u(t) =7.25\exp(2t - 2) - \dfrac{3}{2}t - \dfrac{3}{4}
 \end{equation*}
 ```
 ```

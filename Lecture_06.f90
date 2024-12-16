@@ -286,7 +286,7 @@ contains
     double precision function f68(x, y)
         implicit none
         double precision, intent(in) :: x, y
-        f68 = 2.0d0 * x + 3.0d0 * y
+        f68 = 3.0d0 * x + 2.0d0 * y
     end function f68
 
     double precision function f68_Exact(x)
@@ -334,7 +334,7 @@ contains
         integer(int32) :: i
 
         do i = 1, size(x) - 1
-            y(i + 1) = y(i) + h * f(x(i + 1), y(i))
+            y(i + 1) = y(i) + h * f(x(i), y(i))
         end do
 
     end subroutine Euler_Forward
